@@ -96,27 +96,12 @@ public class CountryDaoImpl implements CountryDao {
     }
    @Override
     public List<Country> getCountries(Integer pageSize, Integer page) {
-        pageSize = pageSize == null ? countryList.size() : pageSize;
-        page = page == null ? 1 : page;
-        Integer firstIndex = (page - 1) * pageSize;
-        List<Country> output = new ArrayList<>();
-        for (int i = firstIndex; i < firstIndex+pageSize; i++){
-            output.add(countryList.get(i));
-        }
-        return output;
+        int firstIndex = (page - 1) * pageSize;
+        return countryList.subList(firstIndex, firstIndex + pageSize);
     }
     @Override
     public Country getCountry(Long id){
-        Country output = null;
-        for (Country country: countryList){
-            if(country.getId().equals(id)){
-                output = country;
-                break;
-            }
-        }
-        return output;
-
-
-
+        return countryList.stream().filter(country ->
+                country.getId().equals(id)).findFirst().orElse(null);
     }
 }
