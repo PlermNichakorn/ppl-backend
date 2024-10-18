@@ -1,4 +1,4 @@
-package se331.project2.rest.entity.Controller;
+package se331.project2.rest.Controller;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.http.HttpHeaders;
