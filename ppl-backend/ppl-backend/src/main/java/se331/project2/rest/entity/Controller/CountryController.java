@@ -1,8 +1,12 @@
 package se331.project2.rest.entity.Controller;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import se331.project2.rest.entity.Country;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CountryController {
@@ -76,5 +80,17 @@ public class CountryController {
                 .rank(1L)
                 .sport("Basketball")
                 .build());
+    }
+    @GetMapping("countries")
+    public ResponseEntity<?> getCountryLists(@RequestParam(value = "_limit",required = false)Integer perPage, @RequestParam(value = "_page",required = false)Integer page){
+        perPage = perPage == null?countryList.size():perPage;
+        page = page == null?1:page;
+        Integer firstIndex = (page-1)*perPage;
+        List<Country> output = new ArrayList<>();
+        for(int i = firstIndex; i < firstIndex+perPage; i++){
+            output.add(countryList.get(i));
+        }
+
+        return ResponseEntity.ok(output);
     }
 }
