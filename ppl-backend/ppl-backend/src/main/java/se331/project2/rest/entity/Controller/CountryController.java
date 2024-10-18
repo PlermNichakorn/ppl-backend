@@ -1,6 +1,7 @@
 package se331.project2.rest.entity.Controller;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import java.util.List;
 @Controller
 public class CountryController {
     List<Country> countryList;
+
 
     @PostConstruct
     public void init() {
@@ -94,6 +96,8 @@ public class CountryController {
         page = page == null ? 1 : page;
         Integer firstIndex = (page - 1) * perPage;
         List<Country> output = new ArrayList<>();
+        HttpHeaders responseHeader = new HttpHeaders();
+        responseHeader.set("x-total-count", String.valueOf(countryList.size()));
 
         try {
             for (int i = firstIndex; i < firstIndex + perPage && i < countryList.size(); i++) {
@@ -101,7 +105,7 @@ public class CountryController {
             }
             return ResponseEntity.ok(output);
         } catch (IndexOutOfBoundsException ex) {
-            return ResponseEntity.ok(output);  // Return what we have even if it's not a full page
+            return new ResponseEntity<>(output,responseHeader,HttpStatus.OK); // Return what we have even if it's not a full page
         }
     }
 
