@@ -7,4 +7,5 @@ public interface CountryDao{
     Integer getCountrySize();
     Page<Country> getCountries(Integer pageSize, Integer page);
     Country getCountry(Long id);
+    Country save(Country country);
 }

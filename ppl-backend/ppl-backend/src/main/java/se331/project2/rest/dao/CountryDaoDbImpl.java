@@ -29,4 +29,9 @@ final CountryRepository countryRepository;
     public Country getCountry(Long id) {
         return countryRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public Country save(Country country){
+        return countryRepository.save(country);
+    }
 }

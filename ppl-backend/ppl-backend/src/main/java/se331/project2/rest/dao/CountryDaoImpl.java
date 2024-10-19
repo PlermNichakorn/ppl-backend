@@ -5,15 +5,9 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.server.ResponseStatusException;
 import se331.project2.rest.entity.Country;
+import se331.project2.rest.repository.CountryRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +16,12 @@ import java.util.List;
 @Profile("manual")
 public class CountryDaoImpl implements CountryDao {
     List<Country> countryList;
+    final CountryRepository countryRepository;
+
+    public CountryDaoImpl(CountryRepository countryRepository) {
+        this.countryRepository = countryRepository;
+    }
+
     @PostConstruct
     public void init() {
         countryList = new ArrayList<>();
@@ -108,5 +108,12 @@ public class CountryDaoImpl implements CountryDao {
     public Country getCountry(Long id){
         return countryList.stream().filter(country ->
                 country.getId().equals(id)).findFirst().orElse(null);
+    }
+
+    @Override
+    public Country save(Country country){
+        country.setId(countryList.get(countryList.size() - 1).getId()+1);
+        countryList.add(country);
+        return countryRepository.save(country);
     }
 }

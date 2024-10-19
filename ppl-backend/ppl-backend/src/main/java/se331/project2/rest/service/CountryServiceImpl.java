@@ -28,4 +28,9 @@ public class CountryServiceImpl implements CountryService {
     public Country getCountry(Long id){
         return countryDao.getCountry(id);
     }
+
+    @Override
+    public Country save(Country country){
+        return countryDao.save(country);
+    }
 }
