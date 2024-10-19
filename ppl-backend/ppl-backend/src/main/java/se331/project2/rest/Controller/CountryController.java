@@ -1,6 +1,5 @@
 package se331.project2.rest.Controller;
 
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,14 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 import se331.project2.rest.entity.Country;
-import se331.project2.rest.service.Countryservice;
+import se331.project2.rest.service.CountryService;
 
-import java.util.ArrayList;
 import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class CountryController {
-    final Countryservice countryservice;
+    final CountryService countryservice;
 
 
     @GetMapping("countries")

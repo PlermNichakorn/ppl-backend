@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class SportServicelmpl implements Sportservice{
+public class SportServicelmpl implements SportService {
     final SportDao sportDao;
 
     @Override

@@ -9,17 +9,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
-import se331.project2.rest.entity.Country;
 import se331.project2.rest.entity.Sport;
-import se331.project2.rest.service.Countryservice;
-import se331.project2.rest.service.Sportservice;
+import se331.project2.rest.service.SportService;
 
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class SportController {
-    final Sportservice sportservice;
+    final SportService sportservice;
 
 
     @GetMapping("sports")

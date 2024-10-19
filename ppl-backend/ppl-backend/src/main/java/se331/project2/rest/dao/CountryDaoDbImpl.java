@@ -9,8 +9,8 @@ import se331.project2.rest.repository.CountryRepository;
 import java.util.List;
 
 @Repository
-@RequiredArgsConstructor
 @Profile("db")
+@RequiredArgsConstructor
 public class CountryDaoDbImpl implements CountryDao{
 final CountryRepository countryRepository;
     @Override

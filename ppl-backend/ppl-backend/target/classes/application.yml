@@ -1,15 +1,14 @@
 spring:
-  application:
-    name: ppl-backend
-  spring:
     profiles:
       active:
-        -manual
-  datasource:
-    url: jdbc:mysql://localhost:3306/ppldb?createDatabaseIfNotExist=true&autoReconnect=true&characterEncoding=UTF-8&allowMultiQueries=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: ppg1234
+        - manual
+    application:
+      name: ppl-backend
+    datasource:
+      url: jdbc:mysql://localhost:3306/ppldb?createDatabaseIfNotExist=true&autoReconnect=true&characterEncoding=UTF-8&allowMultiQueries=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: ppg1234
     jpa:
       properties:
         hibernate:

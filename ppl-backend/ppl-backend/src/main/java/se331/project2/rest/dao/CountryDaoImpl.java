@@ -19,8 +19,6 @@ import java.util.List;
 @Profile("manual")
 public class CountryDaoImpl implements CountryDao {
     List<Country> countryList;
-
-
     @PostConstruct
     public void init() {
         countryList = new ArrayList<>();
@@ -32,7 +30,7 @@ public class CountryDaoImpl implements CountryDao {
                 .gold(40L)
                 .silver(44L)
                 .bronze(42L)
-                .rank(1L)
+                .rankValue(1L)
                 .sport("Basketball")
                 .build());
         countryList.add(Country.builder()
@@ -43,7 +41,7 @@ public class CountryDaoImpl implements CountryDao {
                 .gold(40L)
                 .silver(44L)
                 .bronze(42L)
-                .rank(1L)
+                .rankValue(1L)
                 .sport("Basketball")
                 .build());
         countryList.add(Country.builder()
@@ -54,7 +52,7 @@ public class CountryDaoImpl implements CountryDao {
                 .gold(40L)
                 .silver(44L)
                 .bronze(42L)
-                .rank(1L)
+                .rankValue(1L)
                 .sport("Basketball")
                 .build());
         countryList.add(Country.builder()
@@ -65,7 +63,7 @@ public class CountryDaoImpl implements CountryDao {
                 .gold(40L)
                 .silver(44L)
                 .bronze(42L)
-                .rank(1L)
+                .rankValue(1L)
                 .sport("Basketball")
                 .build());
         countryList.add(Country.builder()
@@ -76,7 +74,7 @@ public class CountryDaoImpl implements CountryDao {
                 .gold(40L)
                 .silver(44L)
                 .bronze(42L)
-                .rank(1L)
+                .rankValue(1L)
                 .sport("Basketball")
                 .build());
         countryList.add(Country.builder()
@@ -87,7 +85,7 @@ public class CountryDaoImpl implements CountryDao {
                 .gold(40L)
                 .silver(44L)
                 .bronze(42L)
-                .rank(1L)
+                .rankValue(1L)
                 .sport("Basketball")
                 .build());
     }

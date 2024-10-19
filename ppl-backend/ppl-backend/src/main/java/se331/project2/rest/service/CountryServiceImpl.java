@@ -9,8 +9,9 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CountryServiceImpl implements Countryservice {
+public class CountryServiceImpl implements CountryService {
     final CountryDao countryDao;
+
 
     @Override
     public Integer getCountrySize(){
