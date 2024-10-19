@@ -2,6 +2,9 @@ package se331.project2.rest.dao;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -95,9 +98,11 @@ public class CountryDaoImpl implements CountryDao {
         return countryList.size();
     }
    @Override
-    public List<Country> getCountries(Integer pageSize, Integer page) {
+    public Page<Country> getCountries(Integer pageSize, Integer page) {
+        pageSize = pageSize == null ? countryList.size() : pageSize;
+        page = page == null ? 1 : page;
         int firstIndex = (page - 1) * pageSize;
-        return countryList.subList(firstIndex, firstIndex + pageSize);
+        return new PageImpl<Country>(countryList.subList(firstIndex, firstIndex + pageSize), PageRequest.of(page, pageSize), countryList.size());
     }
     @Override
     public Country getCountry(Long id){

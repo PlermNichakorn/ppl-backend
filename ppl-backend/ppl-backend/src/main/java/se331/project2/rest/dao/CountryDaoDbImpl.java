@@ -2,6 +2,8 @@ package se331.project2.rest.dao;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import se331.project2.rest.entity.Country;
 import se331.project2.rest.repository.CountryRepository;
@@ -19,13 +21,8 @@ final CountryRepository countryRepository;
     }
 
     @Override
-    public List<Country> getCountries(Integer pageSize, Integer page){
-        List<Country> countries = countryRepository.findAll();
-        pageSize = pageSize == null ? countries.size():pageSize;
-        page = page == null?1:page;
-        int firstIndex = (page-1)*pageSize;
-        List<Country> output = countries.subList(firstIndex, firstIndex+pageSize);
-        return output;
+    public Page<Country> getCountries(Integer pageSize, Integer page){
+        return countryRepository.findAll(PageRequest.of(page - 1, pageSize));
     }
 
     @Override

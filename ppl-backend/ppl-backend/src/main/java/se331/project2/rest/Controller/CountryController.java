@@ -1,6 +1,7 @@
 package se331.project2.rest.Controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,18 +23,12 @@ public class CountryController {
     @GetMapping("countries")
     public ResponseEntity<?> getCountryLists(@RequestParam(value = "_limit", required = false) Integer perPage,
                                              @RequestParam(value = "_page", required = false) Integer page) {
-        List<Country> output =null;
-        Integer countrySize = countryservice.getCountrySize();
+        Page<Country> pageOutput = countryservice.getCountries(perPage, page);
         HttpHeaders responseHeader = new HttpHeaders();
-        responseHeader.set("x-total-count", String.valueOf(countrySize));
-
-        try {
-            output = countryservice.getCountries(perPage, page);
-            return ResponseEntity.ok(output);
-        } catch (IndexOutOfBoundsException ex) {
-            return new ResponseEntity<>(output,responseHeader,HttpStatus.OK); // Return what we have even if it's not a full page
-        }
+        responseHeader.set("x-total-count", String.valueOf(pageOutput.getTotalElements()));
+        return new ResponseEntity<>(pageOutput.getContent(), responseHeader, HttpStatus.OK);
     }
+
 
 
     @GetMapping("countries/{id}")
