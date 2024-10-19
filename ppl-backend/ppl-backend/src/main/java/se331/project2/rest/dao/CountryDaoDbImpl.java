@@ -1,6 +1,7 @@
 package se331.project2.rest.dao;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 import se331.project2.rest.entity.Country;
 import se331.project2.rest.repository.CountryRepository;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
+@Profile("db")
 public class CountryDaoDbImpl implements CountryDao{
 final CountryRepository countryRepository;
     @Override
