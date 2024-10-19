@@ -15,7 +15,7 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
     @Override
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent){
         countryRepository.save(Country.builder()
-                .countryName("United States")
+                .countryName("ABC")
                 .description("The United States first participated in the Olympics in the 1896 Summer Olympics and has sent athletes to every Summer Olympics since. Athletes have won a total of 2,826 medals: 1,125 gold, 907 silver, and 794 bronze.")
                 .image("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/330px-Flag_of_the_United_States.svg.png")
                 .gold(40L)
@@ -25,7 +25,7 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
                 .sport("Basketball")
                 .build());
         countryRepository.save(Country.builder()
-                .countryName("United States")
+                .countryName("DEF")
                 .description("The United States first participated in the Olympics in the 1896 Summer Olympics and has sent athletes to every Summer Olympics since. Athletes have won a total of 2,826 medals: 1,125 gold, 907 silver, and 794 bronze.")
                 .image("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/330px-Flag_of_the_United_States.svg.png")
                 .gold(40L)
@@ -35,7 +35,7 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
                 .sport("Basketball")
                 .build());
         countryRepository.save(Country.builder()
-                .countryName("United States")
+                .countryName("GHT")
                 .description("The United States first participated in the Olympics in the 1896 Summer Olympics and has sent athletes to every Summer Olympics since. Athletes have won a total of 2,826 medals: 1,125 gold, 907 silver, and 794 bronze.")
                 .image("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/330px-Flag_of_the_United_States.svg.png")
                 .gold(40L)

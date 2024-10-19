@@ -21,6 +21,12 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public Page<Country> getCountries(Integer pageSize, Integer page){
+        if (page == null || page < 1) {
+            page = 1; // default to first page
+        }
+        if (pageSize == null || pageSize < 1) {
+            pageSize = 10; // default page size
+        }
         return countryDao.getCountries(pageSize, page);
     }
 
