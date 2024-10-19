@@ -5,12 +5,15 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 import se331.project2.rest.entity.Country;
+import se331.project2.rest.entity.Sport;
 import se331.project2.rest.repository.CountryRepository;
+import se331.project2.rest.repository.SportRepository;
 
 @Component
 @RequiredArgsConstructor
 public class initApp implements ApplicationListener<ApplicationReadyEvent> {
     final CountryRepository countryRepository;
+    final SportRepository sportRepository;
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent){
@@ -64,5 +67,27 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
                 .rankValue(1L)
                 .sport("Basketball")
                 .build());
+
+        sportRepository.save(Sport.builder()
+                .sportName("Basketball")
+                .gold_medals(25L)
+                .silver_medals(10L)
+                .bronze_medals(21L)
+                .build());
+        sportRepository.save(Sport.builder()
+                .id(002L)
+                .sportName("Swimming")
+                .gold_medals(10L)
+                .silver_medals(12L)
+                .bronze_medals(13L)
+                .build());
+        sportRepository.save(Sport.builder()
+                .id(003L)
+                .sportName("Volleyball")
+                .gold_medals(5L)
+                .silver_medals(22L)
+                .bronze_medals(8L)
+                .build());
     }
+
 }

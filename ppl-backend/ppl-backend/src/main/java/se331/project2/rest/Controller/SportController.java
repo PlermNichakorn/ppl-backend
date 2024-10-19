@@ -1,14 +1,14 @@
 package se331.project2.rest.Controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import se331.project2.rest.entity.Country;
 import se331.project2.rest.entity.Sport;
 import se331.project2.rest.service.SportService;
 
@@ -23,17 +23,10 @@ public class SportController {
     @GetMapping("sports")
     public ResponseEntity<?> getSportLists(@RequestParam(value = "_limit", required = false) Integer perPage,
                                              @RequestParam(value = "_page", required = false) Integer page) {
-        List<Sport> output =null;
-        Integer sportSize = sportservice.getSportSize();
+        Page<Sport> pageOutput = sportservice.getSports(perPage, page);
         HttpHeaders responseHeader = new HttpHeaders();
-        responseHeader.set("x-total-count", String.valueOf(sportSize));
-
-        try {
-            output = sportservice.getSports(perPage, page);
-            return ResponseEntity.ok(output);
-        } catch (IndexOutOfBoundsException ex) {
-            return new ResponseEntity<>(output,responseHeader, HttpStatus.OK); // Return what we have even if it's not a full page
-        }
+        responseHeader.set("x-total-count", String.valueOf(pageOutput.getTotalElements()));
+        return new ResponseEntity<>(pageOutput.getContent(), responseHeader, HttpStatus.OK);
     }
 
 
@@ -45,5 +38,10 @@ public class SportController {
         }else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The given id is not found");
         }
+    }
+    @PostMapping("/sports")
+    public ResponseEntity<?> addSport(@RequestBody Sport sport){
+        Sport output = sportservice.save(sport);
+        return ResponseEntity.ok(output);
     }
 }
