@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import se331.project2.rest.entity.Country;
 import se331.project2.rest.service.CountryService;
+import se331.project2.rest.util.LabMapper;
 
 import java.util.List;
 @Controller
@@ -24,7 +25,7 @@ public class CountryController {
         Page<Country> pageOutput = countryservice.getCountries(perPage, page);
         HttpHeaders responseHeader = new HttpHeaders();
         responseHeader.set("x-total-count", String.valueOf(pageOutput.getTotalElements()));
-        return new ResponseEntity<>(pageOutput.getContent(), responseHeader, HttpStatus.OK);
+        return new ResponseEntity<>(LabMapper.INSTANCE.getCountryDTO(pageOutput.getContent()), responseHeader, HttpStatus.OK);
     }
 
 
@@ -33,7 +34,7 @@ public class CountryController {
         public ResponseEntity<?> getCountry(@PathVariable("id") Long id) {
             Country output = countryservice.getCountry(id);
             if (output != null){
-                return ResponseEntity.ok(output);
+                return ResponseEntity.ok(LabMapper.INSTANCE.getCountryDTO(output));
             }else {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The given id is not found");
             }
@@ -41,7 +42,7 @@ public class CountryController {
         @PostMapping("/countries")
         public ResponseEntity<?> addCountry(@RequestBody Country country){
         Country output = countryservice.save(country);
-        return ResponseEntity.ok(output);
+            return ResponseEntity.ok(LabMapper.INSTANCE.getCountryDTO(output));
         }
     }
 

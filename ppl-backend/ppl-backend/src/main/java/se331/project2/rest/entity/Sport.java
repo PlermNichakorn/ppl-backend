@@ -19,12 +19,9 @@ public class Sport {
     @EqualsAndHashCode.Exclude
     Long id;
     String sportName;
-    @Nullable
-    Integer gold;
-    @Nullable
-    Integer silver;
-    @Nullable
-    Integer bronze;
+    Integer gold_medals;
+    Integer silver_medals;
+    Integer bronze_medals;
 
     @ManyToOne
     @JoinColumn(name = "country_id")

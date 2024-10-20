@@ -1,20 +1,18 @@
 package se331.project2.rest.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Builder
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Country {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Exclude
+public class CountryDTO {
     Long id;
     String countryName;
     String description;
@@ -22,8 +20,6 @@ public class Country {
     Long gold_total;
     Long silver_total;
     Long bronze_total;
+    List<CountryOwnSportsDTO> ownSports = new ArrayList<>();
 
-    @OneToMany(mappedBy = "country")
-    @Builder.Default
-    List<Sport> ownSports = new ArrayList<>();
 }
