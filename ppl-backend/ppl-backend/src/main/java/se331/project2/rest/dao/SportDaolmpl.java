@@ -22,31 +22,31 @@ public class SportDaolmpl implements SportDao{
     }
 
 
-    @PostConstruct
-    public void init() {
-        sportList = new ArrayList<>();
-        sportList.add(Sport.builder()
-                .id(001L)
-                .sportName("Hello")
-                .gold_medals(25L)
-                .silver_medals(10L)
-                .bronze_medals(21L)
-                .build());
-        sportList.add(Sport.builder()
-                .id(002L)
-                .sportName("OK")
-                .gold_medals(10L)
-                .silver_medals(12L)
-                .bronze_medals(13L)
-                .build());
-        sportList.add(Sport.builder()
-                .id(003L)
-                .sportName("What")
-                .gold_medals(5L)
-                .silver_medals(22L)
-                .bronze_medals(8L)
-                .build());
-    }
+//    @PostConstruct
+//    public void init() {
+//        sportList = new ArrayList<>();
+//        sportList.add(Sport.builder()
+//                .id(001L)
+//                .sportName("Hello")
+////                .gold_medals(25L)
+////                .silver_medals(10L)
+////                .bronze_medals(21L)
+//                .build());
+//        sportList.add(Sport.builder()
+//                .id(002L)
+//                .sportName("OK")
+////                .gold_medals(10L)
+////                .silver_medals(12L)
+////                .bronze_medals(13L)
+//                .build());
+//        sportList.add(Sport.builder()
+//                .id(003L)
+//                .sportName("What")
+////                .gold_medals(5L)
+////                .silver_medals(22L)
+////                .bronze_medals(8L)
+//                .build());
+//    }
 
     @Override
     public Integer getSportSize(){
