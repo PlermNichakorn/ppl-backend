@@ -68,6 +68,7 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
                 .sport("Basketball")
                 .build());
 
+        //Sport
         sportRepository.save(Sport.builder()
                 .sportName("Basketball")
                 .gold_medals(25L)
@@ -75,18 +76,58 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
                 .bronze_medals(21L)
                 .build());
         sportRepository.save(Sport.builder()
-                .id(002L)
                 .sportName("Swimming")
                 .gold_medals(10L)
                 .silver_medals(12L)
                 .bronze_medals(13L)
                 .build());
         sportRepository.save(Sport.builder()
-                .id(003L)
                 .sportName("Volleyball")
                 .gold_medals(5L)
                 .silver_medals(22L)
                 .bronze_medals(8L)
+                .build());
+        sportRepository.save(Sport.builder()
+                .sportName("Soccer")
+                .gold_medals(25L)
+                .silver_medals(10L)
+                .bronze_medals(21L)
+                .build());
+        sportRepository.save(Sport.builder()
+                .sportName("Ballet")
+                .gold_medals(10L)
+                .silver_medals(12L)
+                .bronze_medals(13L)
+                .build());
+        sportRepository.save(Sport.builder()
+                .sportName("Synchronized swimming")
+                .gold_medals(5L)
+                .silver_medals(22L)
+                .bronze_medals(8L)
+                .build());
+        sportRepository.save(Sport.builder()
+                .sportName("ฺBoxing")
+                .gold_medals(20L)
+                .silver_medals(15L)
+                .bronze_medals(24L)
+                .build());
+        sportRepository.save(Sport.builder()
+                .sportName("Running")
+                .gold_medals(9L)
+                .silver_medals(11L)
+                .bronze_medals(12L)
+                .build());
+        sportRepository.save(Sport.builder()
+                .sportName("Judo")
+                .gold_medals(6L)
+                .silver_medals(23L)
+                .bronze_medals(10L)
+                .build());
+        sportRepository.save(Sport.builder()
+                .sportName("Badminton")
+                .gold_medals(20L)
+                .silver_medals(15L)
+                .bronze_medals(5L)
                 .build());
     }
 
