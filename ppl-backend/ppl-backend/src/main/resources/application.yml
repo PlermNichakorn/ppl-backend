@@ -4,6 +4,12 @@ spring:
         - db
     application:
       name: ppl-backend
+      security:
+        jwt:
+          secret-key: 08e2916be14c5d73ed3bde1fc7be481c7487662a07df1978a9db4cf5ff6b5401d8ca2e6a418d84e2dfcae286d16b60ed4ebfd083c730848aa6afdc84d75fbce5881ce14f2f85c1294ab486844990db26c8ba61b38f7e8c95bae1d596120dec7951a17679f8746bf8d0dec0604a31204a400c1677d57ea6b09760ea5c1857262641c1231414989804ca96234b03fb4eb5897432080b9a32671b1f322167a2f715d2ab2a14db73899db93dceca88aedda92e7c900c689316bc69140e6be1a40a4c52bcaacdd15e520567813f6e5c2553ba4f2be3f1c18b5362f664a810dabd036bab44d3eefc6839a2aca394e18f7a44cc085e8edf4d6cac61ec34811edd30c1fc
+          expiration: 86400000 # 86400000 # a day
+          refresh-token:
+            expiration: 604800000 # 7 days
     datasource:
       url: jdbc:mysql://localhost:3306/ppldb?createDatabaseIfNotExist=true&autoReconnect=true&characterEncoding=UTF-8&allowMultiQueries=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true
       driver-class-name: com.mysql.cj.jdbc.Driver
