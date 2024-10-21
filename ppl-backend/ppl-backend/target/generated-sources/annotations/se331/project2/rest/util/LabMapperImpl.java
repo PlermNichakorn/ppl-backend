@@ -12,7 +12,7 @@ import se331.project2.rest.entity.SportDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-21T00:06:29+0700",
+    date = "2024-10-21T23:06:37+0700",
     comments = "version: 1.6.0, compiler: javac, environment: Java 20.0.1 (Oracle Corporation)"
 )
 public class LabMapperImpl implements LabMapper {
@@ -58,9 +58,6 @@ public class LabMapperImpl implements LabMapper {
         countryDTO.countryName( country.getCountryName() );
         countryDTO.description( country.getDescription() );
         countryDTO.image( country.getImage() );
-        countryDTO.gold_total( country.getGold_total() );
-        countryDTO.silver_total( country.getSilver_total() );
-        countryDTO.bronze_total( country.getBronze_total() );
         countryDTO.ownSports( sportListToCountryOwnSportsDTOList( country.getOwnSports() ) );
 
         return countryDTO.build();

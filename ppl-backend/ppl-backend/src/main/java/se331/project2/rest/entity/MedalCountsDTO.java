@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MedalCountsDTO {
-    private Integer gold_medals;
-    private Integer silver_medals;
-    private Integer bronze_medals;
+public class MedalCountsDTO{
+    Integer gold_medals;
+    Integer silver_medals;
+    Integer bronze_medals;
 }

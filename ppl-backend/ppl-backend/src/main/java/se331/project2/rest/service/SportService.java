@@ -1,12 +1,10 @@
 package se331.project2.rest.service;
 
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Service;
 import se331.project2.rest.entity.MedalCountsDTO;
 import se331.project2.rest.entity.Sport;
-import se331.project2.rest.repository.SportRepository;
+import se331.project2.rest.entity.SportDTO;
 
-import java.util.List;
 public interface SportService {
 
     Integer getSportSize();
@@ -14,6 +12,5 @@ public interface SportService {
     Sport getSport(Long id);
     Sport save(Sport sport);
 
-    MedalCountsDTO getMedalCountsByCountryId(Long countryId);
 
 }

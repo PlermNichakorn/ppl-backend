@@ -5,7 +5,9 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 import se331.project2.rest.entity.Country;
+import se331.project2.rest.entity.MedalCountsDTO;
 import se331.project2.rest.entity.Sport;
+import se331.project2.rest.entity.SportDTO;
 import se331.project2.rest.repository.CountryRepository;
 import se331.project2.rest.repository.SportRepository;
 import jakarta.transaction.Transactional;
@@ -138,5 +140,6 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
                 .country(country5)
                 .build());
     }
+
 
 }

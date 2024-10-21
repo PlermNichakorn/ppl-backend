@@ -1,15 +1,14 @@
 package se331.project2.rest.dao;
 
-import jakarta.annotation.PostConstruct;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import se331.project2.rest.entity.Sport;
+import se331.project2.rest.entity.SportDTO;
 import se331.project2.rest.repository.SportRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 @Repository
 @Profile("manual")
@@ -69,4 +68,7 @@ public class SportDaolmpl implements SportDao{
         sportList.add(sport);
         return sportRepository.save(sport);
     }
+
+
+
 }

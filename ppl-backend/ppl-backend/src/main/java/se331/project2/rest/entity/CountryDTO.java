@@ -1,5 +1,6 @@
 package se331.project2.rest.entity;
 
+import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,9 +18,6 @@ public class CountryDTO {
     String countryName;
     String description;
     String image;
-    Long gold_total;
-    Long silver_total;
-    Long bronze_total;
     List<CountryOwnSportsDTO> ownSports = new ArrayList<>();
 
 }
