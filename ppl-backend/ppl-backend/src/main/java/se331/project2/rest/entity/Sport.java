@@ -1,10 +1,12 @@
 package se331.project2.rest.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.annotation.Nullable;
+import jakarta.persistence.*;
+
 import lombok.*;
+
+import java.util.List;
+import java.util.ArrayList;
 
 @Data
 @Builder
@@ -17,7 +19,13 @@ public class Sport {
     @EqualsAndHashCode.Exclude
     Long id;
     String sportName;
-    Long gold_medals;
-    Long silver_medals;
-    Long bronze_medals;
+    Integer gold_medals;
+    Integer silver_medals;
+    Integer bronze_medals;
+
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    private Country country;
+
+
 }

@@ -8,11 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import se331.project2.rest.entity.Country;
+import se331.project2.rest.entity.MedalCountsDTO;
 import se331.project2.rest.entity.Sport;
 import se331.project2.rest.service.SportService;
-
-import java.util.List;
+import se331.project2.rest.util.LabMapper;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,7 +25,7 @@ public class SportController {
         Page<Sport> pageOutput = sportservice.getSports(perPage, page);
         HttpHeaders responseHeader = new HttpHeaders();
         responseHeader.set("x-total-count", String.valueOf(pageOutput.getTotalElements()));
-        return new ResponseEntity<>(pageOutput.getContent(), responseHeader, HttpStatus.OK);
+        return new ResponseEntity<>(LabMapper.INSTANCE.getSportDto(pageOutput.getContent()), responseHeader, HttpStatus.OK);
     }
 
 
@@ -34,7 +33,7 @@ public class SportController {
     public ResponseEntity<?> getSport(@PathVariable("id") Long id) {
         Sport output = sportservice.getSport(id);
         if (output != null){
-            return ResponseEntity.ok(output);
+            return ResponseEntity.ok(LabMapper.INSTANCE.getSportDTO(output));
         }else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The given id is not found");
         }
@@ -42,6 +41,8 @@ public class SportController {
     @PostMapping("/sports")
     public ResponseEntity<?> addSport(@RequestBody Sport sport){
         Sport output = sportservice.save(sport);
-        return ResponseEntity.ok(output);
+        return ResponseEntity.ok(LabMapper.INSTANCE.getSportDTO(output));
     }
+
+
 }

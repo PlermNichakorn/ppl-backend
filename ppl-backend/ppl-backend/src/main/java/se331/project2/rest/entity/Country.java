@@ -1,7 +1,11 @@
 package se331.project2.rest.entity;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Builder
@@ -16,9 +20,8 @@ public class Country {
     String countryName;
     String description;
     String image;
-    Long gold;
-    Long silver;
-    Long bronze;
-    Long rankValue;
-    String sport;
+
+    @OneToMany(mappedBy = "country")
+    @Builder.Default
+    List<Sport> ownSports = new ArrayList<>();
 }

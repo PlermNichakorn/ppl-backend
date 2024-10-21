@@ -5,9 +5,12 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 import se331.project2.rest.entity.Country;
+import se331.project2.rest.entity.MedalCountsDTO;
 import se331.project2.rest.entity.Sport;
+import se331.project2.rest.entity.SportDTO;
 import se331.project2.rest.repository.CountryRepository;
 import se331.project2.rest.repository.SportRepository;
+import jakarta.transaction.Transactional;
 
 @Component
 @RequiredArgsConstructor
@@ -16,78 +19,127 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
     final SportRepository sportRepository;
 
     @Override
+    @Transactional
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent){
-        countryRepository.save(Country.builder()
+        Country country1, country2, country3, country4, country5;
+        country1 = countryRepository.save(Country.builder()
                 .countryName("ABC")
                 .description("The United States first participated in the Olympics in the 1896 Summer Olympics and has sent athletes to every Summer Olympics since. Athletes have won a total of 2,826 medals: 1,125 gold, 907 silver, and 794 bronze.")
                 .image("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/330px-Flag_of_the_United_States.svg.png")
-                .gold(40L)
-                .silver(44L)
-                .bronze(42L)
-                .rankValue(1L)
-                .sport("Basketball")
                 .build());
-        countryRepository.save(Country.builder()
+        country2 = countryRepository.save(Country.builder()
                 .countryName("DEF")
                 .description("The United States first participated in the Olympics in the 1896 Summer Olympics and has sent athletes to every Summer Olympics since. Athletes have won a total of 2,826 medals: 1,125 gold, 907 silver, and 794 bronze.")
                 .image("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/330px-Flag_of_the_United_States.svg.png")
-                .gold(40L)
-                .silver(44L)
-                .bronze(42L)
-                .rankValue(1L)
-                .sport("Basketball")
+//                .gold(40L)
+//                .silver(44L)
+//                .bronze(42L)
+//                .rankValue(1L)
+//                .sport("Basketball")
                 .build());
-        countryRepository.save(Country.builder()
+        country3 = countryRepository.save(Country.builder()
                 .countryName("GHT")
                 .description("The United States first participated in the Olympics in the 1896 Summer Olympics and has sent athletes to every Summer Olympics since. Athletes have won a total of 2,826 medals: 1,125 gold, 907 silver, and 794 bronze.")
                 .image("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/330px-Flag_of_the_United_States.svg.png")
-                .gold(40L)
-                .silver(44L)
-                .bronze(42L)
-                .rankValue(1L)
-                .sport("Basketball")
+//                .gold(40L)
+//                .silver(44L)
+//                .bronze(42L)
+//                .rankValue(1L)
+//                .sport("Basketball")
                 .build());
-        countryRepository.save(Country.builder()
+        country4 = countryRepository.save(Country.builder()
                 .countryName("United States")
                 .description("The United States first participated in the Olympics in the 1896 Summer Olympics and has sent athletes to every Summer Olympics since. Athletes have won a total of 2,826 medals: 1,125 gold, 907 silver, and 794 bronze.")
                 .image("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/330px-Flag_of_the_United_States.svg.png")
-                .gold(40L)
-                .silver(44L)
-                .bronze(42L)
-                .rankValue(1L)
-                .sport("Basketball")
+//                .gold(40L)
+//                .silver(44L)
+//                .bronze(42L)
+//                .rankValue(1L)
+//                .sport("Basketball")
                 .build());
-        countryRepository.save(Country.builder()
+        country5 = countryRepository.save(Country.builder()
                 .countryName("United States")
                 .description("The United States first participated in the Olympics in the 1896 Summer Olympics and has sent athletes to every Summer Olympics since. Athletes have won a total of 2,826 medals: 1,125 gold, 907 silver, and 794 bronze.")
                 .image("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/330px-Flag_of_the_United_States.svg.png")
-                .gold(40L)
-                .silver(44L)
-                .bronze(42L)
-                .rankValue(1L)
-                .sport("Basketball")
+//                .gold(40L)
+//                .silver(44L)
+//                .bronze(42L)
+//                .rankValue(1L)
+//                .sport("Basketball")
                 .build());
 
+        //Sport
         sportRepository.save(Sport.builder()
                 .sportName("Basketball")
-                .gold_medals(25L)
-                .silver_medals(10L)
-                .bronze_medals(21L)
+                .gold_medals(25)
+                .silver_medals(10)
+                .bronze_medals(21)
+                .country(country1)
                 .build());
         sportRepository.save(Sport.builder()
-                .id(002L)
                 .sportName("Swimming")
-                .gold_medals(10L)
-                .silver_medals(12L)
-                .bronze_medals(13L)
+                .gold_medals(10)
+                .silver_medals(12)
+                .bronze_medals(13)
+                .country(country1)
                 .build());
         sportRepository.save(Sport.builder()
-                .id(003L)
                 .sportName("Volleyball")
-                .gold_medals(5L)
-                .silver_medals(22L)
-                .bronze_medals(8L)
+                .gold_medals(5)
+                .silver_medals(22)
+                .bronze_medals(8)
+                .country(country2)
+                .build());
+        sportRepository.save(Sport.builder()
+                .sportName("Soccer")
+                .gold_medals(25)
+                .silver_medals(10)
+                .bronze_medals(21)
+                .country(country2)
+                .build());
+        sportRepository.save(Sport.builder()
+                .sportName("Ballet")
+                .gold_medals(10)
+                .silver_medals(12)
+                .bronze_medals(13)
+                .country(country3)
+                .build());
+        sportRepository.save(Sport.builder()
+                .sportName("Synchronized swimming")
+                .gold_medals(5)
+                .silver_medals(22)
+                .bronze_medals(8)
+                .country(country3)
+                .build());
+        sportRepository.save(Sport.builder()
+                .sportName("ฺBoxing")
+                .gold_medals(20)
+                .silver_medals(15)
+                .bronze_medals(24)
+                .country(country4)
+                .build());
+        sportRepository.save(Sport.builder()
+                .sportName("Running")
+                .gold_medals(9)
+                .silver_medals(11)
+                .bronze_medals(12)
+                .country(country4)
+                .build());
+        sportRepository.save(Sport.builder()
+                .sportName("Judo")
+                .gold_medals(6)
+                .silver_medals(23)
+                .bronze_medals(10)
+                .country(country5)
+                .build());
+        sportRepository.save(Sport.builder()
+                .sportName("Badminton")
+                .gold_medals(20)
+                .silver_medals(15)
+                .bronze_medals(5)
+                .country(country5)
                 .build());
     }
+
 
 }

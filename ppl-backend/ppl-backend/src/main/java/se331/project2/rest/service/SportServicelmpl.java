@@ -4,14 +4,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import se331.project2.rest.dao.SportDao;
+import se331.project2.rest.entity.MedalCountsDTO;
 import se331.project2.rest.entity.Sport;
-
-import java.util.List;
+import se331.project2.rest.entity.SportDTO;
+import se331.project2.rest.repository.SportRepository;
 
 @Service
 @RequiredArgsConstructor
 public class SportServicelmpl implements SportService {
     final SportDao sportDao;
+    final SportRepository sportRepository;
 
     @Override
     public Integer getSportSize(){
@@ -38,4 +40,6 @@ public class SportServicelmpl implements SportService {
     public Sport save(Sport sport) {
         return sportDao.save(sport);
     }
+
+
 }
