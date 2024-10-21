@@ -12,8 +12,8 @@ import se331.project2.rest.entity.SportDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-22T01:29:05+0700",
-    comments = "version: 1.6.0, compiler: javac, environment: Java 20.0.2 (Eclipse Adoptium)"
+    date = "2024-10-21T22:37:48+0700",
+    comments = "version: 1.6.0, compiler: javac, environment: Java 20.0.1 (Oracle Corporation)"
 )
 public class LabMapperImpl implements LabMapper {
 

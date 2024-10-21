@@ -3,6 +3,8 @@ package se331.project2.rest.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import se331.project2.rest.entity.Country;
 import se331.project2.rest.entity.MedalCountsDTO;
@@ -11,12 +13,16 @@ import se331.project2.rest.entity.SportDTO;
 import se331.project2.rest.repository.CountryRepository;
 import se331.project2.rest.repository.SportRepository;
 import jakarta.transaction.Transactional;
+import se331.project2.rest.security.user.Role;
+import se331.project2.rest.security.user.User;
+import se331.project2.rest.security.user.UserRepository;
 
 @Component
 @RequiredArgsConstructor
 public class initApp implements ApplicationListener<ApplicationReadyEvent> {
     final CountryRepository countryRepository;
     final SportRepository sportRepository;
+    final UserRepository userRepository;
 
     @Override
     @Transactional
@@ -139,6 +145,37 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
                 .bronze_medals(5)
                 .country(country5)
                 .build());
+        addUser();
+        country1.setUser(user1);
+        user1.setCountry(country1);
+        country2.setUser(user2);
+        user2.setCountry(country2);
+        
+    }
+    User user1,user2;
+    private void addUser(){
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        user1 = User.builder()
+                .username("ppg")
+                .password(encoder.encode("ppg1234"))
+                .firstname("ppg")
+                .lastname("admin")
+                .email("ppg@gmail.com")
+                .enabled(true)
+                .build();
+        user2 = User.builder()
+                .username("user")
+                .password(encoder.encode("user"))
+                .firstname("user")
+                .lastname("user")
+                .email("enabled@user.com")
+                .enabled(true)
+                .build();
+        user1.getRoles().add(Role.ROLE_USER);
+        user1.getRoles().add(Role.ROLE_ADMIN);
+        user2.getRoles().add(Role.ROLE_USER);
+        userRepository.save(user1);
+        userRepository.save(user2);
     }
 
 
