@@ -27,4 +27,5 @@ public class Sport {
     @JoinColumn(name = "country_id")
     private Country country;
 
+
 }

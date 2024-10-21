@@ -2,10 +2,7 @@ package se331.project2.rest.util;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import se331.project2.rest.entity.Country;
-import se331.project2.rest.entity.CountryDTO;
-import se331.project2.rest.entity.Sport;
-import se331.project2.rest.entity.SportDTO;
+import se331.project2.rest.entity.*;
 
 import java.util.List;
 
@@ -18,4 +15,5 @@ public interface LabMapper {
 
     CountryDTO getCountryDTO (Country country);
     List<CountryDTO> getCountryDTO (List<Country> countries);
+
 }

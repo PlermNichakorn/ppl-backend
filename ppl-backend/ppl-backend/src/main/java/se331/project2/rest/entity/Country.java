@@ -1,5 +1,6 @@
 package se331.project2.rest.entity;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 import se331.project2.rest.security.user.User;
@@ -20,9 +21,6 @@ public class Country {
     String countryName;
     String description;
     String image;
-    Long gold_total;
-    Long silver_total;
-    Long bronze_total;
 
     @OneToMany(mappedBy = "country")
     @Builder.Default

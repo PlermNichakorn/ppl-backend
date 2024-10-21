@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class SportDTO {
     Long id;
     String sportName;
-    MedalCountsDTO medal;
     SportCountryDTO country;
+
 }

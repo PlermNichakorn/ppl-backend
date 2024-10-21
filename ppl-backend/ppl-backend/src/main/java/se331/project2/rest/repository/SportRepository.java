@@ -13,6 +13,4 @@ import java.util.List;
 public interface SportRepository extends JpaRepository<Sport,Long> {
     List<Sport> findAll();
 
-    @Query("SELECT SUM(cs.gold_medals), SUM(cs.silver_medals), SUM(cs.bronze_medals) FROM Sport cs WHERE cs.country.id = :countryId")
-    Object[] findMedalCountsByCountryId(@Param("countryId") Long countryId);
 }

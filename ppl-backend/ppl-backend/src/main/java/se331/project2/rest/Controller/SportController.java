@@ -8,13 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import se331.project2.rest.entity.Country;
 import se331.project2.rest.entity.MedalCountsDTO;
 import se331.project2.rest.entity.Sport;
 import se331.project2.rest.service.SportService;
 import se331.project2.rest.util.LabMapper;
-
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -47,9 +44,5 @@ public class SportController {
         return ResponseEntity.ok(LabMapper.INSTANCE.getSportDTO(output));
     }
 
-    @GetMapping("/countries/{countryId}/medal-counts")
-    public ResponseEntity<MedalCountsDTO> getMedalCounts(@PathVariable Long countryId) {
-        MedalCountsDTO medalCounts = sportservice.getMedalCountsByCountryId(countryId);
-        return ResponseEntity.ok(medalCounts);
-    }
+
 }

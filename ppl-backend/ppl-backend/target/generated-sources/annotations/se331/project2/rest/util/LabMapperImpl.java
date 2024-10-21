@@ -58,9 +58,6 @@ public class LabMapperImpl implements LabMapper {
         countryDTO.countryName( country.getCountryName() );
         countryDTO.description( country.getDescription() );
         countryDTO.image( country.getImage() );
-        countryDTO.gold_total( country.getGold_total() );
-        countryDTO.silver_total( country.getSilver_total() );
-        countryDTO.bronze_total( country.getBronze_total() );
         countryDTO.ownSports( sportListToCountryOwnSportsDTOList( country.getOwnSports() ) );
 
         return countryDTO.build();
