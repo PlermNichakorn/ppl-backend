@@ -37,8 +37,13 @@ public class SecurityConfiguration {
 
               authorize.requestMatchers("/api/v1/auth/**").permitAll()
                       .requestMatchers(HttpMethod.GET,"/countries").permitAll()
+                      .requestMatchers(HttpMethod.GET,"/sports").permitAll()
+                      .requestMatchers(HttpMethod.GET,"/sports/{id}").permitAll()
                       .requestMatchers(HttpMethod.GET,"/countries/{id}").permitAll()
+                      .requestMatchers(HttpMethod.PUT,"/sports/{id}").permitAll()
                       .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+
+
                       .anyRequest().authenticated();
             })
 

@@ -52,4 +52,18 @@ public class SportController {
         MedalCountsDTO medalCounts = sportservice.getMedalCountsByCountryId(countryId);
         return ResponseEntity.ok(medalCounts);
     }
+    @CrossOrigin(origins = "http://localhost:5173")
+    @PutMapping("/sports/{id}")
+    public ResponseEntity<?> updateSport(@PathVariable Long id, @RequestBody Sport sportDetails) {
+        Sport existingSport = sportservice.getSport(id);
+        if (existingSport == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sport not found");
+        }
+        existingSport.setSportName(sportDetails.getSportName());
+        existingSport.setGold_medals(sportDetails.getGold_medals());
+        existingSport.setSilver_medals(sportDetails.getSilver_medals());
+        existingSport.setBronze_medals(sportDetails.getBronze_medals());
+        Sport updatedSport = sportservice.save(existingSport);
+        return ResponseEntity.ok(LabMapper.INSTANCE.getSportDTO(updatedSport));
+    }
 }
