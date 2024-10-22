@@ -148,7 +148,6 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
         user1.setCountry(country1);
         country2.setUser(user2);
         user2.setCountry(country2);
-        
     }
     User user1,user2;
     private void addUser(){
