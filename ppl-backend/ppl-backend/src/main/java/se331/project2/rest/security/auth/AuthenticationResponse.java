@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import se331.project2.rest.entity.Country;
+import se331.project2.rest.entity.CountryDTO;
 
 @Data
 @Builder
@@ -16,4 +18,5 @@ public class AuthenticationResponse {
   private String accessToken;
   @JsonProperty("refresh_token")
   private String refreshToken;
+  private CountryDTO user;
 }
