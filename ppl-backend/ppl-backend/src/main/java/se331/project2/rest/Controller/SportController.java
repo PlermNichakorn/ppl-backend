@@ -1,5 +1,6 @@
 package se331.project2.rest.Controller;
 
+import jakarta.servlet.ServletException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
@@ -12,6 +13,8 @@ import se331.project2.rest.entity.MedalCountsDTO;
 import se331.project2.rest.entity.Sport;
 import se331.project2.rest.service.SportService;
 import se331.project2.rest.util.LabMapper;
+
+import java.io.IOException;
 
 @Controller
 @RequiredArgsConstructor

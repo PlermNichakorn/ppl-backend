@@ -1,6 +1,7 @@
 package se331.project2.rest.util;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import se331.project2.rest.entity.*;
 
@@ -15,5 +16,7 @@ public interface LabMapper {
 
     CountryDTO getCountryDTO (Country country);
     List<CountryDTO> getCountryDTO (List<Country> countries);
+    @Mapping(target = "roles", source = "user.roles")
+    CountryAuthDTO getCountryAuthDto(Country country);
 
 }
