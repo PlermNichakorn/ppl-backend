@@ -3,6 +3,7 @@ package se331.project2.rest.security.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,7 +35,11 @@ public class SecurityConfiguration {
 
             .authorizeHttpRequests((authorize) -> {
 
-              authorize.requestMatchers("/api/v1/auth/**").permitAll().anyRequest().authenticated();
+              authorize.requestMatchers("/api/v1/auth/**").permitAll()
+                      .requestMatchers(HttpMethod.GET,"/countries").permitAll()
+                      .requestMatchers(HttpMethod.GET,"/countries/{id}").permitAll()
+                      .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+                      .anyRequest().authenticated();
             })
 
             .sessionManagement((session) ->{
