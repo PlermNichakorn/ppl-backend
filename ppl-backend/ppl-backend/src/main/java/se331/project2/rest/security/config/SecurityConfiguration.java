@@ -40,7 +40,7 @@ public class SecurityConfiguration {
                       .requestMatchers(HttpMethod.GET,"/sports").permitAll()
                       .requestMatchers(HttpMethod.GET,"/sports/{id}").permitAll()
                       .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-                      .requestMatchers(HttpMethod.POST, "/addCountries").hasRole("ADMIN")
+                      .requestMatchers(HttpMethod.POST, "/addCountries").permitAll()
                       .requestMatchers(HttpMethod.POST, "/imageUpload").permitAll()
                       .requestMatchers(HttpMethod.POST, "/sports").permitAll()
                       .anyRequest().authenticated();
