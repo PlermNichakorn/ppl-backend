@@ -9,7 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import se331.project2.rest.entity.Country;
+import se331.project2.rest.entity.CountryDTO;
+import se331.project2.rest.entity.Sport;
 import se331.project2.rest.service.CountryService;
+import se331.project2.rest.service.SportService;
 import se331.project2.rest.util.LabMapper;
 
 import java.util.List;
@@ -17,6 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CountryController {
     final CountryService countryservice;
+    final SportService sportService;
 
 
     @GetMapping("countries")
@@ -39,10 +43,11 @@ public class CountryController {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The given id is not found");
             }
         }
-        @PostMapping("/countries")
+        @PostMapping("/addCountries")
         public ResponseEntity<?> addCountry(@RequestBody Country country){
-        Country output = countryservice.save(country);
-            return ResponseEntity.ok(LabMapper.INSTANCE.getCountryDTO(output));
+        Country savedCountry = countryservice.save(country);
+            CountryDTO countryDTO = LabMapper.INSTANCE.getCountryDTO(savedCountry);
+            return ResponseEntity.ok(countryDTO);
         }
     }
 

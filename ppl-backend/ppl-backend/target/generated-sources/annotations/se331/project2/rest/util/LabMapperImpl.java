@@ -4,16 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 import se331.project2.rest.entity.Country;
+import se331.project2.rest.entity.CountryAuthDTO;
 import se331.project2.rest.entity.CountryDTO;
 import se331.project2.rest.entity.CountryOwnSportsDTO;
 import se331.project2.rest.entity.Sport;
 import se331.project2.rest.entity.SportCountryDTO;
 import se331.project2.rest.entity.SportDTO;
+import se331.project2.rest.security.user.Role;
+import se331.project2.rest.security.user.User;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-22T16:13:02+0700",
-    comments = "version: 1.6.0, compiler: javac, environment: Java 20.0.2 (Eclipse Adoptium)"
+    date = "2024-10-23T01:01:32+0700",
+    comments = "version: 1.6.0, compiler: javac, environment: Java 20.0.1 (Oracle Corporation)"
 )
 public class LabMapperImpl implements LabMapper {
 
@@ -77,6 +80,27 @@ public class LabMapperImpl implements LabMapper {
         return list;
     }
 
+    @Override
+    public CountryAuthDTO getCountryAuthDto(Country country) {
+        if ( country == null ) {
+            return null;
+        }
+
+        CountryAuthDTO.CountryAuthDTOBuilder countryAuthDTO = CountryAuthDTO.builder();
+
+        List<Role> roles = countryUserRoles( country );
+        List<Role> list = roles;
+        if ( list != null ) {
+            countryAuthDTO.roles( new ArrayList<Role>( list ) );
+        }
+        countryAuthDTO.id( country.getId() );
+        countryAuthDTO.countryName( country.getCountryName() );
+        countryAuthDTO.description( country.getDescription() );
+        countryAuthDTO.image( country.getImage() );
+
+        return countryAuthDTO.build();
+    }
+
     protected SportCountryDTO countryToSportCountryDTO(Country country) {
         if ( country == null ) {
             return null;
@@ -117,5 +141,13 @@ public class LabMapperImpl implements LabMapper {
         }
 
         return list1;
+    }
+
+    private List<Role> countryUserRoles(Country country) {
+        User user = country.getUser();
+        if ( user == null ) {
+            return null;
+        }
+        return user.getRoles();
     }
 }

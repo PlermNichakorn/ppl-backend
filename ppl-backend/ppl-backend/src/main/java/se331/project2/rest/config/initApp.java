@@ -150,8 +150,10 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
         user1.setCountry(country1);
         country2.setUser(user2);
         user2.setCountry(country2);
+        country3.setUser(user3);
+        user3.setCountry(country3);
     }
-    User user1,user2;
+    User user1,user2, user3;
     private void addUser(){
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         user1 = User.builder()
@@ -170,11 +172,21 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
                 .email("enabled@user.com")
                 .enabled(true)
                 .build();
-        user1.getRoles().add(Role.ROLE_USER);
+        user3 = User.builder()
+                .username("disableuser")
+                .password(encoder.encode("disableuser"))
+                .firstname("disableuser")
+                .lastname("disableuser")
+                .email("disableuser@user.com")
+                .enabled(false)
+                .build();
+
         user1.getRoles().add(Role.ROLE_ADMIN);
-        user2.getRoles().add(Role.ROLE_USER);
+        user2.getRoles().add(Role.ROLE_DISTRIBUTOR);
+        user3.getRoles().add(Role.ROLE_DISTRIBUTOR);
         userRepository.save(user1);
         userRepository.save(user2);
+        userRepository.save(user3);
     }
 
 

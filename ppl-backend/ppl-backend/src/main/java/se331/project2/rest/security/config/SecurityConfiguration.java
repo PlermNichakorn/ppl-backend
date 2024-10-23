@@ -32,13 +32,17 @@ public class SecurityConfiguration {
     http
             .csrf((crsf) -> crsf.disable())
             .cors(Customizer.withDefaults())
-
             .authorizeHttpRequests((authorize) -> {
-
               authorize.requestMatchers("/api/v1/auth/**").permitAll()
                       .requestMatchers(HttpMethod.GET,"/countries").permitAll()
                       .requestMatchers(HttpMethod.GET,"/countries/{id}").permitAll()
+                      .requestMatchers(HttpMethod.GET,"/add-data").permitAll()
+                      .requestMatchers(HttpMethod.GET,"/sports").permitAll()
+                      .requestMatchers(HttpMethod.GET,"/sports/{id}").permitAll()
                       .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+                      .requestMatchers(HttpMethod.POST, "/addCountries").hasRole("ADMIN")
+                      .requestMatchers(HttpMethod.POST, "/imageUpload").permitAll()
+                      .requestMatchers(HttpMethod.POST, "/sports").permitAll()
                       .anyRequest().authenticated();
             })
 
