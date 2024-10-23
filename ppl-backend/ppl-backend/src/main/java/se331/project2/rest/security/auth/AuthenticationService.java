@@ -19,6 +19,9 @@ import se331.project2.rest.security.user.Role;
 import se331.project2.rest.security.user.User;
 import se331.project2.rest.security.user.UserRepository;
 import se331.project2.rest.util.LabMapper;
+import se331.project2.rest.entity.Country;
+import se331.project2.rest.entity.CountryAuthDTO;
+import se331.project2.rest.repository.CountryRepository;
 
 import java.io.IOException;
 import java.util.List;
@@ -31,23 +34,49 @@ public class AuthenticationService {
   private final PasswordEncoder passwordEncoder;
   private final JwtService jwtService;
   private final AuthenticationManager authenticationManager;
+  private final CountryRepository countryRepository;
 
   public AuthenticationResponse register(RegisterRequest request) {
-    User user = User.builder()
-            .firstname(request.getFirstname())
-            .lastname(request.getLastname())
-            .email(request.getEmail())
-            .password(passwordEncoder.encode(request.getPassword()))
-            .roles(List.of(Role.ROLE_USER))
+    User savedUser;
+    String jwtToken = null;
+    String refreshToken = null;
+    User user = null;
+    Country country1;
+    try {
+      Country country = Country.builder()
+              .countryName(request.getUsername())
+              .id(countryRepository.count() + 1)
+              .build();
+      user = User.builder()
+              .firstname(request.getFirstname())
+              .enabled(true)
+              .lastname(request.getLastname())
+              .email(request.getEmail())
+              .password(passwordEncoder.encode(request.getPassword()))
+              .username(request.getUsername())
+              .country(country)
+              .roles(List.of(Role.ROLE_DISTRIBUTOR))
+              .build();
+      country1 = countryRepository.save(country);
+      savedUser = repository.save(user);
+      country1.setUser(user);
+      jwtToken = jwtService.generateToken(user);
+      refreshToken = jwtService.generateRefreshToken(user);
+      saveUserToken(savedUser, jwtToken);
+    } catch (Exception e) {
+      System.out.print(e);
+    }
+    // Manually create OrganizerAuthDTO
+    CountryAuthDTO countryAuthDTO = CountryAuthDTO.builder()
+            .id(user.getCountry().getId())
+            .countryName(user.getCountry().getCountryName())
+            .roles(user.getRoles()) // Set the roles here
             .build();
-    var savedUser = repository.save(user);
-    var jwtToken = jwtService.generateToken(user);
-    var refreshToken = jwtService.generateRefreshToken(user);
-    saveUserToken(savedUser, jwtToken);
     return AuthenticationResponse.builder()
-        .accessToken(jwtToken)
+            .accessToken(jwtToken)
             .refreshToken(refreshToken)
-        .build();
+            .user(countryAuthDTO)
+            .build();
   }
 
   public AuthenticationResponse authenticate(AuthenticationRequest request) {
@@ -67,7 +96,7 @@ public class AuthenticationService {
     return AuthenticationResponse.builder()
             .accessToken(jwtToken)
             .refreshToken(refreshToken)
-            .user(LabMapper.INSTANCE.getCountryDTO(user.getCountry()))
+            .user(LabMapper.INSTANCE.getCountryAuthDto(user.getCountry()))
             .build();
   }
 
