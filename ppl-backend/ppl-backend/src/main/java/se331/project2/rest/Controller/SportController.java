@@ -47,11 +47,11 @@ public class SportController {
         return ResponseEntity.ok(LabMapper.INSTANCE.getSportDTO(output));
     }
 
-    @GetMapping("/countries/{countryId}/medal-counts")
-    public ResponseEntity<MedalCountsDTO> getMedalCounts(@PathVariable Long countryId) {
-        MedalCountsDTO medalCounts = sportservice.getMedalCountsByCountryId(countryId);
-        return ResponseEntity.ok(medalCounts);
-    }
+//    @GetMapping("/countries/{countryId}/medal-counts")
+//    public ResponseEntity<MedalCountsDTO> getMedalCounts(@PathVariable Long countryId) {
+//        MedalCountsDTO medalCounts = sportservice.getMedalCountsByCountryId(countryId);
+//        return ResponseEntity.ok(medalCounts);
+//    }
     @CrossOrigin(origins = "http://localhost:5173")
     @PutMapping("/sports/{id}")
     public ResponseEntity<?> updateSport(@PathVariable Long id, @RequestBody Sport sportDetails) {
