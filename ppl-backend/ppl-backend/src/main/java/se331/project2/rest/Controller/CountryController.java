@@ -43,12 +43,17 @@ public class CountryController {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The given id is not found");
             }
         }
-        @PostMapping("/addCountries")
-        public ResponseEntity<?> addCountry(@RequestBody Country country){
-        Country savedCountry = countryservice.save(country);
-            CountryDTO countryDTO = LabMapper.INSTANCE.getCountryDTO(savedCountry);
-            return ResponseEntity.ok(countryDTO);
-        }
+//        @PostMapping("/addCountries")
+//        public ResponseEntity<?> addCountry(@RequestBody Country country){
+//        Country savedCountry = countryservice.save(country);
+//            CountryDTO countryDTO = LabMapper.INSTANCE.getCountryDTO(savedCountry);
+//            return ResponseEntity.ok(countryDTO);
+//        }
+@PostMapping("/addCountries")
+public ResponseEntity<?> addCountries(@RequestBody Country country){
+    Country output = countryservice.save(country);
+    return ResponseEntity.ok(LabMapper.INSTANCE.getCountryDTO(output));
+}
     }
 
 
